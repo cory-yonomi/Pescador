@@ -39,6 +39,8 @@ app.use((req, res, next) => {
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
 app.use('/journal', require('./controllers/journal'))
+app.use('/streams', require('./controllers/streams'))
+app.use('/fish', require('./controllers/fish'))
 
 // home route
 app.get('/', (req, res)=>{

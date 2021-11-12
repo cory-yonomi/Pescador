@@ -1,16 +1,22 @@
 {
   "development": {
-    "database": "express_auth_development",
+    "username": "postgres",
+    "password": "C06032020s",
+    "database": "pescador_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "username": "postgres",
+    "password": "C06032020s",
+    "database": "pescador_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "express_auth_production",
+    "username": "postgres",
+    "password": "C06032020s",
+    "database": "pescador_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

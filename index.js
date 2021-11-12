@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
-
+app.use('/journal', require('./controllers/journal'))
 
 // home route
 app.get('/', (req, res)=>{

@@ -46,6 +46,36 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be between 8 and 99 characters.'
         }
       }
+    },
+    zipCode: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        len: {
+          args:[5],
+          msg: 'Please enter a valid zip code.'
+        }
+      }
+    },
+    style: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: {
+          args:[3, 12],
+          msg: 'Invalid style selection'
+        }
+      }
+    },
+    favoriteStream: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: {
+          args: [2, 99],
+          msg: 'Please enter a valid favorite.'
+        }
+      }
     }
   }, {
     sequelize,

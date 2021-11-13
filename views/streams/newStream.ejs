@@ -1,0 +1,13 @@
+<div class="main container">
+    <h2>Add A Stream</h2>
+    <form action="/journal" method="POST">
+        <label for="name">Name</label>
+        <input type="name" name="name" id="name"><br>
+        <label for="longitude">Longitude</label>
+        <input type="text" name="longitude" id="longitude"><br>
+        <label for="latitude">Latitude</label>
+        <input type="text" name="latitude" id="latitude"><br>
+        <input hidden type="text" name="userId" id="userId" value="<%= currentUser.id %> "><br>
+        <input type="submit">
+    </form>
+</div>

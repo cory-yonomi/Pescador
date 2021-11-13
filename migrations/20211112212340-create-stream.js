@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       longitude: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       latitude: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       createdAt: {
         allowNull: false,

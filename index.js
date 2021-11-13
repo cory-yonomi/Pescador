@@ -30,6 +30,8 @@ app.use(passport.session())
 app.use(flash())
 
 // custom middleware
+// current user information is generated here and pushed through
+// the rest of the routes
 app.use((req, res, next) => {
     // before every route, attach the flash messages and current user to res.locals
     res.locals.alerts = req.flash();

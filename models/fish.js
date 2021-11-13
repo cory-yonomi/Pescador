@@ -11,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.fish.belongsToMany(models.user, { through: "UserFish" })
+      models.fish.belongsToMany(models.stream, { through: "StreamFish"})
     }
   };
   fish.init({
     userId: DataTypes.INTEGER,
     species: DataTypes.STRING,
-    length: DataTypes.INTEGER,
-    weight: DataTypes.INTEGER,
+    length: DataTypes.DECIMAL,
+    weight: DataTypes.DECIMAL,
     description: DataTypes.STRING
   }, {
     sequelize,

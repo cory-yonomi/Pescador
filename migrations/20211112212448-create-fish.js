@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       length: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       weight: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       description: {
         type: Sequelize.STRING

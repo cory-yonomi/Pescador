@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 
+app.use(express.static(__dirname + '/public/'))
 // views (ejs and layouts) set up
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
@@ -43,7 +44,7 @@ app.use('/streams', require('./controllers/streams'))
 app.use('/fish', require('./controllers/fish'))
 
 // home route
-app.get('/', (req, res)=>{
+app.get('/', isLoggedIn, (req, res) => {
     res.render('home')
 })
 

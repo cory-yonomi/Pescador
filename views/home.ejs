@@ -1,1 +1,19 @@
-<h2>Express Auth Boilerplate Home Page</h2>
+<% if(!currentUser){ %> 
+<div class="container">
+    <h2 id="login">Home</h2>
+
+    <form action="/auth/login" method="POST">
+        <label for="auth-email">Email</label>
+        <input id="auth-email" type="email" name="email">
+    
+        <label for="auth-password">Password</label>
+        <input id="auth-password" type="password" name="password">
+    
+        <input type="submit" value="Log In">
+    </form>
+</div>
+<% } else { %>
+<div class="container">
+    <%- include('partials/dashboard') %>
+</div>
+ <% } %> 

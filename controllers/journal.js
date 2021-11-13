@@ -5,7 +5,7 @@ const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 router.get('/', isLoggedIn, (req, res) => {
-    res.send('Journal Page')
+    res.render('journal/index')
 })
 
 module.exports = router

@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    display: inline-block;
+}
+
+nav ul {
+    margin-top: 15px;
+    list-style-type: none;
+}
+
+nav ul li {
+    padding: 0 5px 0 5px;
+    display: inline;
+}

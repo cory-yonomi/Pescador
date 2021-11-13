@@ -20,3 +20,7 @@ nav ul li {
     padding: 0 5px 0 5px;
     display: inline;
 }
+
+.main {
+    text-align: left;
+}

@@ -53,8 +53,6 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-
 app.listen(3000, () => {
-    console.log(process.env.SUPER_SECRET_SECRET)
     console.log("Pescador running on port 3000")
 })

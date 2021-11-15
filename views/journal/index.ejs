@@ -1,4 +1,8 @@
 <h2>Journal Entries</h2>
-<% console.log(currentUser) %>
-
-</div>  
+<div>
+    <% trips.forEach(trip => { %>
+     <div>
+         <h4><%= trip.date %> </h4>
+     </div>
+    <% }) %>
+</div>

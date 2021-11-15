@@ -5,7 +5,11 @@ const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 router.get('/', isLoggedIn, (req, res) => {
-    res.render('streams/streamIndex')
+    db.stream.findAll({
+        where: { userId: req.user.id },
+    }).then((foundStreams) => {
+        res.render('streams/streamIndex', {streams: foundStreams})        
+    }).catch(err => console.log(err))
 })
 
 router.get('/new', isLoggedIn, (req, res) => {

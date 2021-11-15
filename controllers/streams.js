@@ -16,6 +16,13 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('streams/newStream')
 })
 
+router.get('/:id', isLoggedIn, (req, res) => {
+    db.stream.findByPk(req.params.id)
+    .then(foundStream => {
+    res.render('streams/showStream', { stream: foundStream})
+    }).catch( err => console.log(err))
+})
+
 router.post('/', isLoggedIn, (req, res) => {
     db.stream.create({
         name: req.body.name,

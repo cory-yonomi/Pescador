@@ -2,7 +2,7 @@
 <div>
     <% streams.forEach(stream => { %>
      <div>
-         <h4><%= stream.name %></h4>
+         <a href="/streams/<%= stream.id %> "><h4><%= stream.name %></h4></a>
      </div>
     <% }) %>
 </div>

@@ -8,10 +8,12 @@ const flash = require('connect-flash')
 const isLoggedIn = require('../middleware/isLoggedIn')
 const router = express.Router()
 const db = require('../models')
+const stream = require('../models/stream')
 
 router.get('/', isLoggedIn, (req, res) => {
     db.trip.findAll({
         where: { userId: req.user.id },
+        include: [db.stream]
     }).then((foundTrips) => {
         res.render('journal/index', {trips: foundTrips})        
     }).catch(err => console.log(err))

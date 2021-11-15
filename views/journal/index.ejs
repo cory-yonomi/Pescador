@@ -1,8 +1,9 @@
 <h2>Journal Entries</h2>
+<% console.log(trips[0].stream) %> 
 <div>
     <% trips.forEach(trip => { %>
      <div>
-         <h4><%= trip.date %> </h4>
+         <h4><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %>  </h4>
      </div>
     <% }) %>
 </div>

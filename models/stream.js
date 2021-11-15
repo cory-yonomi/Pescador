@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.stream.belongsTo(models.user)
       models.stream.belongsToMany(models.fish, {through: "UserFish"})
+      models.stream.belongsToMany(models.trip, {through: "tripStream"})
     }
   };
   stream.init({

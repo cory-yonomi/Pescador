@@ -16,4 +16,16 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('streams/newStream')
 })
 
+router.post('/', isLoggedIn, (req, res) => {
+    db.stream.create({
+        name: req.body.name,
+        userId: req.body.userId,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude
+    }).then(createdStream => {
+        console.log(createdStream)
+        res.redirect('/streams')
+    }).catch(err => console.log(err))
+})
+
 module.exports = router

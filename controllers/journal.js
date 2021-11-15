@@ -20,13 +20,24 @@ router.get('/', isLoggedIn, (req, res) => {
 })
 
 router.get('/new', isLoggedIn, (req, res) => {
-    
-    res.render('journal/new')
+    db.stream.findAll({
+        where: { userId: req.user.id }
+    }).then(foundStreams => {
+        res.render('journal/new', {streams: foundStreams})
+    }).catch( err => console.log(err))
 })
 
-router.post('/:id', isLoggedIn, (req, res) => {
-    tripId = req.body.id
-    console.log(req.body)
+router.post('/', isLoggedIn, (req, res) => {
+    db.trip.create({
+        date: req.body.date,
+        userId: req.body.userId,
+        weather: req.body.weather,
+        description: req.body.description,
+        streamId: req.body.stream
+    }).then(createdTrip => {
+        console.log(createdTrip)
+        res.redirect('/journal')
+    }).catch(err => console.log(err))
     res.redirect('/')
 }) 
 

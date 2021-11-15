@@ -3,10 +3,18 @@
     <form action="/journal/" method="POST">
         <label for="date">Date</label>
         <input type="date" name="date" id="date"><br>
+        <label for="stream">Stream</label>
+        <select name="stream" id="stream">
+            <option value="">Choose A Stream</option>
+            <% streams.forEach(stream => { %>
+             <option value="<%= stream.id %>"><%= stream.name %> </option>
+            <% }) %>
+        </select>
         <label for="weather">Weather</label>
         <input type="text" name="weather" id="weather"><br>
         <label for="description">Description</label>
         <input type="text" name="description" id="description"><br>
+        <input hidden type="text" name="userId" id="userId" value="<%= currentUser.id %> "><br>
         <input type="submit">
     </form>
 </div>

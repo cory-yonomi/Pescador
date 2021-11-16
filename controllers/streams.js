@@ -4,6 +4,7 @@ const db = require('../models')
 const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
+//show users streams
 router.get('/', isLoggedIn, (req, res) => {
     db.stream.findAll({
         where: { userId: req.user.id },
@@ -12,10 +13,12 @@ router.get('/', isLoggedIn, (req, res) => {
     }).catch(err => console.log(err))
 })
 
+//add a new stream
 router.get('/new', isLoggedIn, (req, res) => {
     res.render('streams/newStream')
 })
 
+//display an individual streams info
 router.get('/:id', isLoggedIn, (req, res) => {
     db.stream.findByPk(req.params.id)
     .then(foundStream => {
@@ -23,6 +26,32 @@ router.get('/:id', isLoggedIn, (req, res) => {
     }).catch( err => console.log(err))
 })
 
+//edit a stream display
+router.get('/:id/edit', isLoggedIn, (req, res) => {
+    db.stream.findByPk(req.params.id)
+    .then(foundStream => {
+    res.render('streams/editStream', { stream: foundStream})
+    }).catch( err => console.log(err))
+})
+
+//edit a stream update db and redirect
+//requires method override with PUT
+router.put('/:id', isLoggedIn, (req, res) => {
+    db.stream.findByPk(req.params.id)
+        .then(foundStream => {
+            console.log('before update:\n', foundStream)
+            foundStream.update({
+                name: req.body.name,
+                longitude: req.body.longitude,
+                latitude: req.body.latitude
+            })
+        .then(result => {
+            res.redirect(`/streams/${req.params.id}`)
+        })    
+    }).catch(err => console.log(err))
+})
+
+//create new stream in db and redirect
 router.post('/', isLoggedIn, (req, res) => {
     db.stream.create({
         name: req.body.name,

@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const methodOverride = require('method-override')
 
 app.use(express.static(__dirname + '/public/'))
 // views (ejs and layouts) set up
@@ -25,6 +26,9 @@ app.use(session({
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//overide http methods
+app.use(methodOverride('_method'))
 
 // flash middleware (must go AFTER session middleware)
 app.use(flash())

@@ -37,15 +37,18 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
 //edit a stream update db and redirect
 //requires method override with PUT
 router.put('/:id', isLoggedIn, (req, res) => {
+    //call to db for stream info
     db.stream.findByPk(req.params.id)
         .then(foundStream => {
             console.log('before update:\n', foundStream)
+            //update that shit
             foundStream.update({
                 name: req.body.name,
                 longitude: req.body.longitude,
                 latitude: req.body.latitude
             })
-        .then(result => {
+            .then(result => {
+            //redirect to edited stream page
             res.redirect(`/streams/${req.params.id}`)
         })    
     }).catch(err => console.log(err))
@@ -61,6 +64,17 @@ router.post('/', isLoggedIn, (req, res) => {
     }).then(createdStream => {
         console.log(createdStream)
         res.redirect('/streams')
+    }).catch(err => console.log(err))
+})
+
+//delete a stream and redirect
+router.delete('/:id', isLoggedIn, (req, res) => {
+    db.stream.findByPk(req.params.id)
+        .then(foundStream => {
+        foundStream.destroy()
+        }).then(result => {
+            console.log(result)
+            res.redirect('/streams/')
     }).catch(err => console.log(err))
 })
 

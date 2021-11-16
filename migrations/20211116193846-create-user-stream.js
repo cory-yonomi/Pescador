@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('fishes', {
+    await queryInterface.createTable('userStreams', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,20 +11,8 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      species: {
-        type: Sequelize.STRING
-      },
-      length: {
-        type: Sequelize.DECIMAL
-      },
-      weight: {
-        type: Sequelize.DECIMAL
-      },
-      caughtWith: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
+      streamId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('fishes');
+    await queryInterface.dropTable('userStreams');
   }
 };

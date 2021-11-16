@@ -26,17 +26,17 @@ const stream = require('./models/stream')
 //     console.log(err)
 // })
 
-db.stream.create({
-    name: 'Brushy Creek',
-    userId: 1,
-    longitude: 30.530679,
-    latitude: -97.589800,
-}).then(createdStream => {
-    console.log(createdStream)
-    process.exit()
-}).catch(err => {
-    console.log(err)
-})
+// db.stream.create({
+//     name: 'Brushy Creek',
+//     userId: 1,
+//     longitude: 30.530679,
+//     latitude: -97.589800,
+// }).then(createdStream => {
+//     console.log(createdStream)
+//     process.exit()
+// }).catch(err => {
+//     console.log(err)
+// })
 
 db.trip.create({
     userId: 1,

@@ -1,0 +1,20 @@
+<div class="main container">
+    <h2>Edit Trip</h2>
+    <form action="/journal/<%= trip.id %>?_method=PUT" method="POST">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date" value="<%= trip.date %> "><br>
+        <label for="stream">Stream</label>
+        <select name="stream" id="stream">
+            <option value=""><% trip.stream.name %> </option>
+            <% streams.forEach(stream => { %>
+             <option value="<%= stream.id %>"><%= stream.name %> </option>
+            <% }) %>
+        </select>
+        <label for="weather">Weather</label>
+        <input type="text" name="weather" id="weather" value="<%= trip.weather %> "><br>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" value="<%= trip.description %> "><br>
+        <input hidden type="text" name="userId" id="userId" value="<%= currentUser.id %> "><br>
+        <input type="submit">
+    </form>
+</div>

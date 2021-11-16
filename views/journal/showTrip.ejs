@@ -1,0 +1,11 @@
+<h2><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %></h2>
+<div>
+<h5><%= trip.weather %></h5>
+    <h5>Fish Caught: <%= trip.fishCaught %> </h5>
+    <p><%= trip.description %></p>
+</div>
+<a href="<%= trip.id %>/edit"><button>Edit Trip</button></a>
+<a href="<%= trip.id %>/addFish"><button>Add Fish</button></a>
+<form action="/journal/<%= trip.id %>?_method=DELETE" method="POST">
+    <input type="submit" id="delete" name="delete" value="Delete Trip">
+</form>

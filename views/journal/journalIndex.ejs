@@ -2,7 +2,7 @@
 <div>
     <% trips.forEach(trip => { %>
      <div>
-         <h4><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %>  </h4>
+        <a href="/journal/<%= trip.id %> "><h4><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %></h4></a>
      </div>
     <% }) %>
 </div>

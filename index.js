@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const methodOverride = require('method-override')
+const axios = require('axios')
 
 app.use(express.static(__dirname + '/public/'))
 // views (ejs and layouts) set up
@@ -47,16 +48,18 @@ app.use((req, res, next) => {
 app.use('/auth', require('./controllers/auth'))
 app.use('/journal', require('./controllers/journal'))
 app.use('/streams', require('./controllers/streams'))
-app.use('/fish', require('./controllers/fish'))
-
+app.use('/profile', require('./controllers/profile'))
 // home route
-app.get('/', isLoggedIn, (req, res) => {
+app.get('/', (req, res) => {
+    res.render('auth/login')
+})
+
+app.get('/home', isLoggedIn, (req, res) => {
     res.render('home')
 })
 
-// profile route
-app.get('/profile', isLoggedIn, (req, res)=>{
-    res.render('profile')
+app.get('/dashboard', isLoggedIn, (req, res) => {
+    res.render('dashboard')
 })
 
 app.listen(3000, () => {

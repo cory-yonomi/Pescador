@@ -1,1 +1,29 @@
 <h2><%= currentUser.name %>'s Profile</h2>
+<% console.log('current user: ', currentUser) %> 
+<div class="container">
+    <p>Zipcode: 
+        <% if (!currentUser.zipCode) { %>
+            Add a zip code!
+        <% } else { %>
+        <%= currentUser.zipCode %>
+        <% } %>
+    <p>  
+    <p>Style: 
+        <% if (!currentUser.style) { %>
+            Add your fishing style!
+        <% } else { %>
+        <%= currentUser.style %>
+        <% } %>
+    </p>
+    <p>Favorite Stream: 
+        <% if (!currentUser.favoriteStream) { %>
+            Select a favorite waterway!
+        <% } else { %>
+        <%= currentUser.favoriteStream %>
+        <% } %>
+    </p>
+    <p>Fish Caught: </p>
+    <p>Biggest Fish: </p>
+    <p>Email: <%= currentUser.email %> </p>
+</div>
+<a href="/profile/edit"><button>Edit Profile</button></a>

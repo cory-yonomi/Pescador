@@ -1,0 +1,12 @@
+<h2>Edit Profile</h2>
+<form action="/profile?_method=PUT" method="POST" id="profileForm">
+    <label for="zipCode">Zip Code</label>
+    <input type="text" name="zipCode" id="zipCode">
+    <label for="style">Style</label>
+    <input type="text" name="style" id="style">
+    <label for="favoriteStream">Favorite Stream</label>
+    <input type="text" name="favoriteStream" id="favoriteStream">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" value="<%= currentUser.email %> ">
+    <input type="submit">
+</form>

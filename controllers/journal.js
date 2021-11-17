@@ -120,6 +120,7 @@ router.delete('/:id', isLoggedIn, (req, res) => {
     }).catch(err => console.log(err))
 })
 
+//delete a fish
 router.delete('/:id/fish/:fishIdx', isLoggedIn, (req, res) => {
     db.fish.findByPk(req.params.fishIdx)
         .then(foundFish => {

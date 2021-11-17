@@ -1,0 +1,18 @@
+<h2>Add A Fish</h2>
+<form action="/journal/<%= trip.id %>/fish" method="POST">
+    <label for="species">Species</label>
+    <input type="text" name="species" id="species"><br>
+    <label for="length">Length</label>
+    <input type="number" name="length" id="length"><br>
+    <label for="length">Weight</label>
+    <input type="number" name="weight" id="weight"><br>
+    <label for="caughtWith">Caught With</label>
+    <input type="text" name="caughtWith" id="caughtWith"><br>
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description">
+    <input hidden type="number" name="userId" id="userId" value="<%= trip.userId %>">
+    <input hidden type="number" name="streamId" id="streamId" value="<%= trip.streamId %>">
+    <input hidden type="number" name="tripId" id="tripId" value="<%= trip.id %>">
+    <br>
+    <input type="submit">
+</form>

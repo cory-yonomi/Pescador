@@ -11,6 +11,12 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
+      streamId: {
+        type: Sequelize.INTEGER
+      },
+      tripId: {
+        type: Sequelize.INTEGER
+      },
       species: {
         type: Sequelize.STRING
       },

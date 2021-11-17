@@ -1,11 +1,31 @@
 <h2><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %></h2>
 <div>
 <h5><%= trip.weather %></h5>
-    <h5>Fish Caught: <%= trip.fishCaught %> </h5>
+    <h5>Fish Caught: <%= trip.fishes.length %> </h5>
     <p><%= trip.description %></p>
 </div>
 <a href="<%= trip.id %>/edit"><button>Edit Trip</button></a>
 <a href="<%= trip.id %>/addFish"><button>Add Fish</button></a>
-<form action="/journal/<%= trip.id %>?_method=DELETE" method="POST">
+<form action="/journal/<%= trip.id %>?_method=DELETE" method="POST" id="showTripDelete">
     <input type="submit" id="delete" name="delete" value="Delete Trip">
 </form>
+<h4><%= trip.stream.name %> Fish</h4>
+<div id="fishDisplay">
+    <% trip.fishes.forEach( fish => { %>
+        <div class="left">
+            <h5><%= fish.species %> </h5>
+            <p>Length: <%= fish.length %>in</p>
+            <p>Weight: <%= fish.weight %>lbs</p>
+        </div>
+        <div class="center">
+            <p>
+                <%= fish.description %> 
+            </p>
+        </div>
+        <div class="right">
+            <form action="/journal/<%= trip.id %>/fish/<%= fish.id %> ?_method=DELETE" method="POST" id="showTripDelete">
+                <input type="submit" id="delete" name="delete" value="Delete">
+            </form>
+        </div>
+    <% }) %> 
+</div>

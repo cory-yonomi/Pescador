@@ -71,11 +71,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     favoriteStream: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
         len: {
-          args: [2, 99],
+          args: [1, 99],
           msg: 'Please enter a valid favorite.'
         }
       }

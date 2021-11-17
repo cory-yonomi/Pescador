@@ -56,15 +56,27 @@ router.put('/:id', isLoggedIn, (req, res) => {
 
 //create new stream in db and redirect
 router.post('/', isLoggedIn, (req, res) => {
-    db.stream.create({
-        name: req.body.name,
-        userId: req.body.userId,
-        longitude: req.body.longitude,
-        latitude: req.body.latitude
-    }).then(createdStream => {
-        console.log(createdStream)
-        res.redirect('/streams')
-    }).catch(err => console.log(err))
+    db.user.findByPk(req.user.id)
+        .then(founderUser => {
+            founderUser.createStream({
+                name: req.body.name,
+                userId: req.body.userId,
+                longitude: req.body.longitude,
+                latitude: req.body.latitude
+            }).then(createdStream => {
+                console.log(createdStream)
+                res.redirect('/streams')
+        })
+    })
+    // db.stream.create({
+    //     name: req.body.name,
+    //     userId: req.body.userId,
+    //     longitude: req.body.longitude,
+    //     latitude: req.body.latitude
+    // }).then(createdStream => {
+    //     console.log(createdStream)
+    //     res.redirect('/streams')
+    // }).catch(err => console.log(err))
 })
 
 //delete a stream and redirect

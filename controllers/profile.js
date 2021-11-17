@@ -5,11 +5,23 @@ const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 router.get('/', isLoggedIn, (req, res)=>{
-    res.render('profile')
+    db.user.findOne({
+        where: { id: req.user.id },
+        include: [db.stream, db.trip, db.fish]
+    }).then(foundUser => {
+        console.log(foundUser)
+        res.render('profile', {user: foundUser})        
+    })
 })
 
 router.get('/edit', isLoggedIn, (req, res) => {
-    res.render('editProfile')
+    db.user.findOne({
+        where: { id: req.user.id },
+        include: [db.stream, db.trip, db.fish]
+    }).then(foundUser => {
+        console.log(foundUser)
+        res.render('editProfile', {user: foundUser})        
+    })
 })
 
 router.put('/', isLoggedIn, (req, res) => {

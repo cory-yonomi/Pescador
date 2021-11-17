@@ -1,12 +1,17 @@
 <h2>Edit Profile</h2>
 <form action="/profile?_method=PUT" method="POST" id="profileForm">
     <label for="zipCode">Zip Code</label>
-    <input type="text" name="zipCode" id="zipCode">
+    <input type="text" name="zipCode" id="zipCode"><br>
     <label for="style">Style</label>
-    <input type="text" name="style" id="style">
+    <input type="text" name="style" id="style"><br>
     <label for="favoriteStream">Favorite Stream</label>
-    <input type="text" name="favoriteStream" id="favoriteStream">
+    <select name="favoriteStream" id="favoriteStream">
+        <option value="">Choose A Stream</option>
+        <% user.streams.forEach(stream => { %>
+         <option value="<%= stream.id %>"><%= stream.name %> </option>
+        <% }) %>
+    </select><br>
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" value="<%= currentUser.email %> ">
+    <input type="email" name="email" id="email" value="<%= currentUser.email %>"><br>
     <input type="submit">
 </form>

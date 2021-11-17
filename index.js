@@ -55,11 +55,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', isLoggedIn, (req, res) => {
-    res.render('home')
-})
-
-app.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard')
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${req.user.zipCode}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
+        .then(apiRes => {
+            res.render('home', {weather: apiRes.data})
+        })
 })
 
 app.listen(3000, () => {

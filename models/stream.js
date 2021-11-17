@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.stream.belongsTo(models.user)
-      models.stream.belongsToMany(models.user, {through: "userStreams"})
+      models.stream.belongsToMany(models.user, {through: "userStream"})
     }
   };
   stream.init({

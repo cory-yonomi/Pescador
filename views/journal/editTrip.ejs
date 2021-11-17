@@ -2,10 +2,10 @@
     <h2>Edit Trip</h2>
     <form action="/journal/<%= trip.id %>?_method=PUT" method="POST">
         <label for="date">Date</label>
-        <input type="date" name="date" id="date" value="<%= trip.date %> "><br>
+        <input type="date" name="date" id="date" value="<%= trip.date.toLocaleDateString('en-CA') %>"><br>
         <label for="stream">Stream</label>
         <select name="stream" id="stream">
-            <option value=""><% trip.stream.name %> </option>
+            <option value=""><%= trip.stream.name %> </option>
             <% streams.forEach(stream => { %>
              <option value="<%= stream.id %>"><%= stream.name %> </option>
             <% }) %>

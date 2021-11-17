@@ -30,14 +30,21 @@ router.get('/:id', isLoggedIn, (req, res) => {
     }).catch(err => console.log(err))
 })
 
+//I need to find a trip by it's ID and all the streams associated with the trip's user
 router.get('/:id/edit', isLoggedIn, (req, res) => {
     db.trip.findOne({
         where: { id: req.params.id },
-        include: db.stream
+        include: [db.stream, db.user]
     }).then(foundTrip => {
-        res.render('journal/editTrip', {trip: foundTrip})
-    })
+        const trip = foundTrip
+        db.stream.findAll({
+            where: { userId: req.user.id}
+        }).then((foundStreams) => {
+            res.render('journal/editTrip', {streams: foundStreams, trip: trip})
+        })
+    }).catch(err => console.log(err))
 })
+
 
 router.post('/', isLoggedIn, (req, res) => {
     db.trip.create({
@@ -64,6 +71,8 @@ router.put('/:id', isLoggedIn, (req, res) => {
             streamId: req.body.streamId,
             fishCaught: req.body.fishCaught,
             description: req.body.description
+        }).then(result => {
+            res.redirect(`/journal/${ req.params.id }`)
         })
     })
 })

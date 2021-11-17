@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.trip.belongsTo(models.user)
       models.trip.belongsTo(models.stream)
       models.trip.hasMany(models.fish)
     }

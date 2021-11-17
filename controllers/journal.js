@@ -57,7 +57,6 @@ router.post('/', isLoggedIn, (req, res) => {
         console.log(createdTrip)
         res.redirect('/journal')
     }).catch(err => console.log(err))
-    res.redirect('/')
 })
 
 router.put('/:id', isLoggedIn, (req, res) => {
@@ -74,6 +73,15 @@ router.put('/:id', isLoggedIn, (req, res) => {
         }).then(result => {
             res.redirect(`/journal/${ req.params.id }`)
         })
+    })
+})
+
+router.delete('/:id', isLoggedIn, (req, res) => {
+    db.trip.findByPk(req.params.id)
+        .then(foundTrip => {
+        foundTrip.destroy()
+        }).then(result => {
+            res.redirect('/journal')
     })
 })
 

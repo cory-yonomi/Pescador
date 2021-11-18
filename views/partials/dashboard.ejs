@@ -8,7 +8,7 @@
         <p><%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
     </div>
     <div class="forecast">
-        <h4><%= current.name %> 5hr Forecast</h4>
+        <h4>5hr Forecast</h4>
         <h5><%= Math.round(forecast.main.temp) %></h5>
         <p><%= forecast.weather[0].main %></p>
         <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>

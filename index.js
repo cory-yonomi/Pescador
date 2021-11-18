@@ -8,8 +8,9 @@ const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const methodOverride = require('method-override')
 const axios = require('axios')
+const db = require('./models')
 
-app.use(express.static(__dirname + '/public/'))
+app.use('/static', express.static('public'))
 // views (ejs and layouts) set up
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
@@ -57,13 +58,51 @@ app.get('/', (req, res) => {
 
 // once logged in, this is homepage
 app.get('/home', isLoggedIn, (req, res) => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${req.user.zipCode}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
-        .then(apiRes => {
-            res.render('home', {weather: apiRes.data})
-        }).catch(err => console.log(err))
+    const currentReq = (zip) => {
+        return axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
+    }
+
+    const forecastReq = (zip) => {
+        return axios.get(`https://api.openweathermap.org/data/2.5/forecast?zip=${zip}&cnt=1&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
+    }
+
+    Promise.all([currentReq(req.user.zipCode), forecastReq(req.user.zipCode)])
+    .then(values => {
+        console.log(values[1].data.list[0])
+        res.render('home', {current:values[0].data, forecast:values[1].data.list[0]})
+    }).catch(err => console.log(err))
 })
 
 //activate the server
 app.listen(3000, () => {
     console.log("Pescador running on port 3000")
 })
+
+// //enter route
+// app.get('/', (req, res) => {
+//     //query for streams, fish
+//     db.user.findOne({
+//         where: { id: req.user.id },
+//         include: [db.stream, db.fish]
+//     })
+//         .then(foundUser => {
+//             //query weather api for current weather
+//             const currentReq = (zip) => {
+//                 return axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
+//             }
+
+//             //query weather api for forecast with favorite stream's lat and long
+//             const forecastReq = (stream) => {
+//                 return axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${stream.latitude}&lon=${stream.longitude}&cnt=1&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
+//             }
+
+//             return Promise.all([
+//                 currentReq(foundUser.zipcode),
+//                 forecastReq(foundUser.streams[foundUser.favoriteStream])
+//             ])
+//         }).then(values => {
+//         res.render('/home', )
+//     })   
+//     //render dashboard with current weather, favorite stream forecast
+// })
+    

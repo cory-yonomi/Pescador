@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       zipCode: {
-        type: Sequelize.INTEGER  
+        type: Sequelize.STRING  
       },
       style: {
         type: Sequelize.STRING

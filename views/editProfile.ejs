@@ -1,9 +1,9 @@
 <h2>Edit Profile</h2>
 <form action="/profile?_method=PUT" method="POST" id="profileForm">
     <label for="zipCode">Zip Code</label>
-    <input type="text" name="zipCode" id="zipCode"><br>
+    <input type="text" name="zipCode" id="zipCode" value="<%= user.zipCode %>"><br>
     <label for="style">Style</label>
-    <input type="text" name="style" id="style"><br>
+    <input type="text" name="style" id="style" value="<%= user.style %>"><br>
     <label for="favoriteStream">Favorite Stream</label>
     <select name="favoriteStream" id="favoriteStream">
         <option value="">Choose A Stream</option>

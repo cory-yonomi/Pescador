@@ -1,13 +1,21 @@
-<% console.log(weather) %> 
-<div class="container">
-    <h2><%= currentUser.name %>'s Dashboard </h2>
+<% console.log('current:', current) %> 
+<% console.log('forecast', forecast) %> 
+<div class="container weatherDisplay">
     <div class="currentWeather">
-        <h4>Current <%= weather.name %> Conditions</h4>
-        <h5><%= Math.round(weather.main.temp) %></h5>
-        <p><%= weather.weather[0].main %></p>
-        <p><%= Math.round(((weather.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
+        <h4><%= current.name %> Now</h4>
+        <h5><%= Math.round(current.main.temp) %></h5>
+        <p><%= current.weather[0].main %></p>
+        <p><%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
     </div>
     <div class="forecast">
-
+        <h4><%= current.name %> 5hr Forecast</h4>
+        <h5><%= Math.round(forecast.main.temp) %></h5>
+        <p><%= forecast.weather[0].main %></p>
+        <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
     </div>
 </div>
+<!-- <div class="container lastTrip">
+    <div class="tripTitle">
+
+    </div>
+</div> -->

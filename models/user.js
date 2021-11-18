@@ -51,13 +51,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     zipCode: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: {
-          args:[5],
+          args:[5, 5],
           msg: 'Please enter a valid zip code.'
-        }
+        },
+        isNumeric: true
       }
     },
     style: {

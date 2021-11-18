@@ -31,12 +31,12 @@ router.put('/', isLoggedIn, (req, res) => {
     db.user.findByPk(req.user.id)
         .then(foundUser => {
             foundUser.update({
-                zipCode: parseInt(req.body.zipCode),
+                zipCode: req.body.zipCode,
                 style: req.body.style,
                 favoriteStream: req.body.favoriteStream,
                 email: req.body.email
             }).then(() => {
-            res.redirect('/')
+            res.redirect('profile')
         })
     })
 })

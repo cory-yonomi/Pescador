@@ -1,14 +1,25 @@
 body {
     text-align: center;
+    color: white;
+    background-color: rgb(158, 172, 162);
+    font-family: 'Roboto', sans-serif;
 }
 
-header {
+.navbar {
     display: flex;
     justify-content: space-around;
+    background-color: lightslategrey;
+    padding: 10px;
+}
+
+a {
+    color: white;
 }
 
 h1 {
     display: inline-block;
+    font-size: 1.5em;
+    margin-top: 12px;
 }
 
 h4 {
@@ -18,6 +29,7 @@ h4 {
 nav ul {
     margin-top: 15px;
     list-style-type: none;
+    font-weight: 300;
 }
 
 nav ul li {
@@ -34,6 +46,15 @@ nav ul li {
     justify-content: space-evenly;
     margin-top: 50px;
 }
+
+.currentWeather, .forecast {
+    width: 40%;
+    padding: 20px;
+    margin:  5px;
+    border-radius: 10px;
+    background-color: lightslategrey;
+}
+
 
 #fishDisplay {
     display: flex;

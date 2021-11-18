@@ -28,8 +28,10 @@ router.get('/edit', isLoggedIn, (req, res) => {
 
 // edit profile put
 router.put('/', isLoggedIn, (req, res) => {
+    //find user
     db.user.findByPk(req.user.id)
         .then(foundUser => {
+            //update user
             foundUser.update({
                 zipCode: req.body.zipCode,
                 style: req.body.style,

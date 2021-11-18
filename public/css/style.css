@@ -35,7 +35,7 @@ h2 {
 }
 
 h4 {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 nav ul {
@@ -60,6 +60,18 @@ button, input[type=submit] {
 input {
     font-weight: 300;
 }
+
+.cardHeader {
+    width: 100%;
+    padding: 5px 0;
+    background-color: rgb(104, 176, 171);
+    border-radius: 10px 10px 0 0;
+}
+
+.cardBody {
+    margin-top: 20px;
+}
+
 .main {
     text-align: left;
 }
@@ -72,8 +84,7 @@ input {
 
 .currentWeather, .forecast {
     color: rgb(52, 51, 48);
-    width: 30%;
-    padding: 20px;
+    width: 25%;
     margin:  5px;
     border-radius: 10px;
     background-color: white;
@@ -90,3 +101,10 @@ input {
     display: inline-block;
 }
 
+#deleteStream {
+    display: inline-block;
+}
+
+#streamPosition {
+    margin-top: 30px;
+}

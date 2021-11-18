@@ -1,6 +1,6 @@
 <h2><%= stream.name %> </h2>
-<p><%= stream.longitude %>, <%= stream.latitude %></p>
+<p id="streamPosition"><%= stream.longitude %>, <%= stream.latitude %></p>
 <a href="<%= stream.id %>/edit"><button>Edit Stream</button></a>
-<form action="/streams/<%= stream.id %>?_method=DELETE" method="POST">
+<form action="/streams/<%= stream.id %>?_method=DELETE" method="POST" id="deleteStream">
     <input type="submit" id="delete" name="delete" value="Delete Stream">
 </form>

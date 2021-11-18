@@ -66,7 +66,7 @@ router.post('/', isLoggedIn, (req, res) => {
             }).then(createdStream => {
                 console.log(createdStream)
                 res.redirect('/streams')
-        })
+        }).catch(err => console.log(err))
     })
     // db.stream.create({
     //     name: req.body.name,

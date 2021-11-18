@@ -4,6 +4,7 @@ const db = require('../models')
 const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
+// display profile page
 router.get('/', isLoggedIn, (req, res)=>{
     db.user.findOne({
         where: { id: req.user.id },
@@ -14,6 +15,7 @@ router.get('/', isLoggedIn, (req, res)=>{
     })
 })
 
+// edit profile form
 router.get('/edit', isLoggedIn, (req, res) => {
     db.user.findOne({
         where: { id: req.user.id },
@@ -24,6 +26,7 @@ router.get('/edit', isLoggedIn, (req, res) => {
     })
 })
 
+// edit profile put
 router.put('/', isLoggedIn, (req, res) => {
     db.user.findByPk(req.user.id)
         .then(foundUser => {

@@ -49,18 +49,21 @@ app.use('/auth', require('./controllers/auth'))
 app.use('/journal', require('./controllers/journal'))
 app.use('/streams', require('./controllers/streams'))
 app.use('/profile', require('./controllers/profile'))
-// home route
+
+// entry point, only allows log in
 app.get('/', (req, res) => {
     res.render('auth/login')
 })
 
+// once logged in, this is homepage
 app.get('/home', isLoggedIn, (req, res) => {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${req.user.zipCode}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
         .then(apiRes => {
             res.render('home', {weather: apiRes.data})
-        })
+        }).catch(err => console.log(err))
 })
 
+//activate the server
 app.listen(3000, () => {
     console.log("Pescador running on port 3000")
 })

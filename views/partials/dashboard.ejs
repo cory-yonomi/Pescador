@@ -1,25 +1,38 @@
 <% console.log('current:', current) %> 
 <% console.log('forecast', forecast) %> 
 <div class="container weatherDisplay">
-    <div class="currentWeather">
+    <div class="card" id="currentWeather">
         <div class="cardHeader">
             <h4><%= current.name %> Now</h4>
         </div>
         <div class="cardBody">
-        <h5><%= Math.round(current.main.temp) %></h5>
-        <p><%= current.weather[0].main %></p>
-        <p><%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
+            <img src="http://openweathermap.org/img/wn/<%= current.weather[0].icon %>@2x.png" alt="">
+            <h5><%= Math.round(current.main.temp) %>&deg;</h5>
+            <p><%= current.weather[0].description %></p>
+            <p><%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+            </div>
         </div>
-    </div>
-    <div class="forecast">
+    <div class="card" id="forecast">
         <div class="cardHeader">
             <h4>5hr Forecast</h4>
         </div>
         <div class="cardBody">
-        <h5><%= Math.round(forecast.main.temp) %></h5>
-        <p><%= forecast.weather[0].main %></p>
-        <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> </p>
+            <img src="http://openweathermap.org/img/wn/<%= forecast.weather[0].icon %>@2x.png" alt="">
+            <h5><%= Math.round(forecast.main.temp) %>&deg;</h5>
+            <p><%= forecast.weather[0].description %></p>
+            <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+        </div>
     </div>
+    <div class="card" id="Almanac">
+        <div class="cardHeader">
+            <h4>5hr Forecast</h4>
+        </div>
+        <div class="cardBody">
+            <img src="http://openweathermap.org/img/wn/<%= forecast.weather[0].icon %>@2x.png" alt="">
+            <h5><%= Math.round(forecast.main.temp) %>&deg;</h5>
+            <p><%= forecast.weather[0].description %></p>
+            <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+        </div>
     </div>
 </div>
 <!-- <div class="container lastTrip">

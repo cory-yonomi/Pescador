@@ -1,9 +1,21 @@
 <h2>Journal</h2>
 <div>
     <% trips.forEach(trip => { %>
-     <div>
-        <a href="/journal/<%= trip.id %> "><h4><%= trip.date.toLocaleDateString() %> <%= trip.stream.name %></h4></a>
-     </div>
+        <div class="container tripCard">
+            <div class="tripTitle">
+                <a href="/journal/<%= trip.id %>"><h3><%= trip.date.toLocaleDateString('en-US') %> <%= trips[0].stream.name %></h3></a>
+            </div>
+            <div class="lastTripBody">
+                <div class="left">
+                    <h4>Fish:</h4>
+                    <p><%= trip.fishes.length %> </p>
+                </div>
+                <div class="right">
+                    <p><%= trip.weather %></p>
+                    <p><%= trip.description %></p>
+                </div>
+            </div>
+        </div>
     <% }) %>
 </div>
 <a href="/journal/new"><button>New Trip</button></a>

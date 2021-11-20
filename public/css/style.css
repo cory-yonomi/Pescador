@@ -29,7 +29,13 @@ h1 {
 }
 
 h2 {
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
+    font-weight: 300;
+    color:rgb(52, 51, 48);
+}
+
+h3 {
+    margin: 25px 0 0 0;
     font-weight: 300;
     color:rgb(52, 51, 48);
 }
@@ -50,15 +56,21 @@ nav ul li {
 }
 
 button, input[type=submit] {
-    padding: 5px;
+    background-color: rgb(104, 176, 171);
+    padding: 10px;
     margin-top: 20px;
     font-weight: 300;
-    border: 1px solid rgb(52, 51, 48);
+    border: none;
     border-radius: 5px;
 }
 
 input {
     font-weight: 300;
+}
+
+i {
+    font-size: 14pt;
+    margin-right: 3px;
 }
 
 .cardHeader {
@@ -117,16 +129,23 @@ input {
     margin-top: 25px;
 }
 
-#right {
+#profileInfo {
+    margin-top: 25px;
+    padding: 25px;
+    background-color: white;
+    color:rgb(52, 51, 48);
+}
+
+.right {
     margin-top: 8px;
     width: 50%;
 }
 
-#right p {
+.right p {
     line-height: 14px;
 }
 
-#right p:nth-child(2) {
+.right p:nth-child(2) {
     font-weight: 300;
 }
 

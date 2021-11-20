@@ -11,49 +11,68 @@
             </div>
             <div class="cardBodyBot">
                 <div class="cardBottom" id="bottomLeft">
-                    <p><%= current.main.humidity %>%</p>
-                    <p><%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+                    <p><i class="bi bi-moisture"></i> <%= current.main.humidity %>%</p>
+                    <p><i class="bi bi-arrow-down"></i> <%= Math.round(((current.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
                 </div>
                 <div class="cardBottom" id="bottomRight">
-                    <p><%= current.wind.speed %> mph</p>
+                    <p><i class="bi bi-wind"></i> <%= Math.round(current.wind.speed) %> mph</p>
                     <p><%= current.wind.deg %></p>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="card" id="forecast">
         <div class="cardHeader">
-            <h4>5hr Forecast</h4>
+            <h4><%= forecast.name %> Now</h4>
         </div>
         <div class="cardBody">
-            <img src="http://openweathermap.org/img/wn/<%= forecast.weather[0].icon %>@2x.png" alt="Forecast Icon">
-            <h5><%= Math.round(forecast.main.temp) %>&deg;</h5>
-            <p><%= forecast.weather[0].main %></p>
-            <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+            <div class="cardBodyTop">
+                <img src="http://openweathermap.org/img/wn/<%= current.weather[0].icon %>@2x.png" alt="Current weather icon">
+                <h5><%= Math.round(forecast.main.temp) %>&deg;</h5>
+                <p><%= forecast.weather[0].main %></p>
+            </div>
+            <div class="cardBodyBot">
+                <div class="cardBottom" id="bottomLeft">
+                    <p><i class="bi bi-moisture"></i> <%= forecast.main.humidity %>%</p>
+                    <p><i class="bi bi-arrow-down"></i> <%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+                </div>
+                <div class="cardBottom" id="bottomRight">
+                    <p><i class="bi bi-wind"></i> <%= Math.round(forecast.wind.speed) %> mph</p>
+                    <p><%= forecast.wind.deg %></p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card" id="map">
-        <div class="cardHeader">
-            <h4>Map</h4>
-        </div>
+
+    <div class="card" id="otherInfo">
         <div class="cardBody">
-            <img src="http://openweathermap.org/img/wn/<%= forecast.weather[0].icon %>@2x.png" alt="">
-            <h5><%= Math.round(forecast.main.temp) %>&deg;</h5>
-            <p><%= forecast.weather[0].main %></p>
-            <p><%= Math.round(((forecast.main.pressure / 33.8638) + Number.EPSILON) * 100) / 100 %> inHg</p>
+            <div class="cardBodyTop">
+                
+            </div>
+            <div class="cardBodyBot">
+                <div class="cardBottom" id="bottomLeft">
+                    
+                </div>
+                <div class="cardBottom" id="bottomRight">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 <div class="container lastTrip">
     <div class="tripTitle">
         <a href="/journal/<%= trips[0].id %>"><h2><%= trips[0].date.toLocaleDateString('en-US') %> <%= trips[0].stream.name %></h2></a>
     </div>
     <div class="lastTripBody">
-        <div id="left">
+        <div class="left">
             <h4>Fish:</h4>
             <p><%= trips[0].fishes.length %> </p>
         </div>
-        <div id="right">
+        <div class="right">
             <p><%= trips[0].weather %></p>
             <p><%= trips[0].description %></p>
         </div>

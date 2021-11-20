@@ -68,8 +68,14 @@ input {
     border-radius: 10px 10px 0 0;
 }
 
-.cardBody {
-    margin-top: 10px;
+.cardBodyBot {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10pt;
+}
+
+.cardBottom {
+    display: inline-block;
 }
 
 .main {
@@ -90,11 +96,38 @@ input {
     background-color: white;
 }
 
+.lastTrip {
+    margin-top: 60px;
+}
+
+.lastTripBody {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-left: 10%;
+    padding-top: 20px;
+    color:rgb(52, 51, 48);
+    background-color: white;
+    border-radius: 10px;
+}
 
 #fishDisplay {
     display: flex;
     justify-content: space-around;
     margin-top: 25px;
+}
+
+#right {
+    margin-top: 8px;
+    width: 50%;
+}
+
+#right p {
+    line-height: 14px;
+}
+
+#right p:nth-child(2) {
+    font-weight: 300;
 }
 
 #showTripDelete {

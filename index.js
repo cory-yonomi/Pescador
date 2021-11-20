@@ -66,11 +66,23 @@ app.get('/home', isLoggedIn, (req, res) => {
         return axios.get(`https://api.openweathermap.org/data/2.5/forecast?zip=${zip}&cnt=1&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
     }
 
-    Promise.all([currentReq(req.user.zipCode), forecastReq(req.user.zipCode)])
-    .then(values => {
-        console.log(values[1].data.list[0])
-        res.render('home', {current:values[0].data, forecast:values[1].data.list[0]})
-    }).catch(err => console.log(err))
+    const userTripsReq = userID => {
+        return db.trip.findAll({
+            where: { userId: userID },
+            order: [['date', 'DESC']],
+            include: [db.user, db.stream, db.fish]
+        })
+    }
+
+    Promise.all([
+        currentReq(req.user.zipCode),
+        forecastReq(req.user.zipCode),
+        userTripsReq(req.user.id)
+    ])
+        .then(values => {
+        res.render('home', {current:values[0].data, forecast:values[1].data.list[0], trips: values[2]})
+        })
+        .catch(err => console.log(err))
 })
 
 //activate the server

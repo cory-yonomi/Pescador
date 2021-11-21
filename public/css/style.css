@@ -70,7 +70,8 @@ input {
 
 i {
     font-size: 14pt;
-    margin-right: 3px;
+    margin: 5px 3px 0 0;
+    transform: translateY(-25%);
 }
 
 .cardHeader {

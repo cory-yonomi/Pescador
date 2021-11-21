@@ -50,71 +50,15 @@ app.use('/auth', require('./controllers/auth'))
 app.use('/journal', require('./controllers/journal'))
 app.use('/streams', require('./controllers/streams'))
 app.use('/profile', require('./controllers/profile'))
+app.use('/home', require('./controllers/home'))
 
 // entry point, only allows log in
 app.get('/', (req, res) => {
     res.render('auth/login')
 })
 
-// once logged in, this is homepage
-app.get('/home', isLoggedIn, (req, res) => {
-    const currentReq = (zip) => {
-        return axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
-    }
-
-    const forecastReq = (zip) => {
-        return axios.get(`https://api.openweathermap.org/data/2.5/forecast?zip=${zip}&cnt=1&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
-    }
-
-    const userTripsReq = userID => {
-        return db.trip.findAll({
-            where: { userId: userID },
-            order: [['date', 'DESC']],
-            include: [db.user, db.stream, db.fish]
-        })
-    }
-
-    Promise.all([
-        currentReq(req.user.zipCode),
-        forecastReq(req.user.zipCode),
-        userTripsReq(req.user.id)
-    ])
-        .then(values => {
-        res.render('home', {current:values[0].data, forecast:values[1].data.list[0], trips: values[2]})
-        })
-        .catch(err => console.log(err))
-})
-
 //activate the server
 app.listen(3000, () => {
     console.log("Pescador running on port 3000")
 })
-
-// //enter route
-// app.get('/', (req, res) => {
-//     //query for streams, fish
-//     db.user.findOne({
-//         where: { id: req.user.id },
-//         include: [db.stream, db.fish]
-//     })
-//         .then(foundUser => {
-//             //query weather api for current weather
-//             const currentReq = (zip) => {
-//                 return axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
-//             }
-
-//             //query weather api for forecast with favorite stream's lat and long
-//             const forecastReq = (stream) => {
-//                 return axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${stream.latitude}&lon=${stream.longitude}&cnt=1&units=imperial&appid=${process.env.WEATHER_API_KEY}`)
-//             }
-
-//             return Promise.all([
-//                 currentReq(foundUser.zipcode),
-//                 forecastReq(foundUser.streams[foundUser.favoriteStream])
-//             ])
-//         }).then(values => {
-//         res.render('/home', )
-//     })   
-//     //render dashboard with current weather, favorite stream forecast
-// })
     

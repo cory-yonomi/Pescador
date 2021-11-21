@@ -1,3 +1,13 @@
-<div class="container">
-    <%- include('partials/dashboard') %>
-</div>
+<% if (current.length == 0) { %>
+    <div class="container" id="welcome">
+        <h2>Welcome!</h2>
+        <p>Complete your profile to start using your dashboard! Once you have at least a zip code, start adding streams and trips!</p>
+        <a href="/profile/edit"><button>Edit Profile</button></a>
+    </div>
+<% } else { %>
+    <div class="container">
+        <%- include('partials/dashboard') %>
+    </div>
+<% } %> 
+
+

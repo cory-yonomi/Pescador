@@ -45,7 +45,7 @@ router.get('/', isLoggedIn, (req, res) => {
     ])
         .then(values => {
             if (values[0].length === 0 || values[1].length === 0) {
-                res.render('home', { current: [], forecast: [], winds: {}, trips: [] })
+                res.render('home', { current: [] })
             } else {
                 const winds = {
                     currentWind: windDirection(values[0].data.wind.deg),

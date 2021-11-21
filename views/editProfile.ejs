@@ -6,7 +6,7 @@
     <input type="text" name="style" id="style" value="<%= user.style %>"><br>
     <label for="favoriteStream">Favorite Stream</label>
     <select name="favoriteStream" id="favoriteStream">
-        <option value="">Choose A Stream</option>
+        <option value="0">Choose A Stream</option>
         <% user.streams.forEach(stream => { %>
          <option value="<%= stream.id %>"><%= stream.name %> </option>
         <% }) %>

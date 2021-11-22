@@ -1,5 +1,5 @@
  <% console.log(winds) %> 
- 
+ <% console.log(trips) %> 
  <div class="container weatherDisplay">
     <div class="card" id="currentWeather">
         <div class="cardHeader">
@@ -64,7 +64,9 @@
     </div>
 </div>
 
-
+<% if (trips.length === 0) { %>
+    <p>Add your first trip!</p>
+<% } else { %>
 <div class="container lastTrip">
     <div class="tripTitle">
         <a href="/journal/<%= trips[0].id %>"><h2><%= trips[0].date.toLocaleDateString('en-US') %> <%= trips[0].stream.name %></h2></a>
@@ -80,3 +82,4 @@
         </div>
     </div>
 </div>
+<% } %> 

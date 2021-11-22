@@ -40,7 +40,6 @@ router.put('/:id', isLoggedIn, (req, res) => {
     //call to db for stream info
     db.stream.findByPk(req.params.id)
         .then(foundStream => {
-            console.log('before update:\n', foundStream)
             //update that shit
             foundStream.update({
                 name: req.body.name,
@@ -57,26 +56,16 @@ router.put('/:id', isLoggedIn, (req, res) => {
 //create new stream in db and redirect
 router.post('/', isLoggedIn, (req, res) => {
     db.user.findByPk(req.user.id)
-        .then(founderUser => {
-            founderUser.createStream({
+        .then(foundUser => {
+            foundUser.createStream({
                 name: req.body.name,
                 userId: req.body.userId,
                 longitude: req.body.longitude,
                 latitude: req.body.latitude
             }).then(createdStream => {
-                console.log(createdStream)
                 res.redirect('/streams')
         }).catch(err => console.log(err))
     })
-    // db.stream.create({
-    //     name: req.body.name,
-    //     userId: req.body.userId,
-    //     longitude: req.body.longitude,
-    //     latitude: req.body.latitude
-    // }).then(createdStream => {
-    //     console.log(createdStream)
-    //     res.redirect('/streams')
-    // }).catch(err => console.log(err))
 })
 
 //delete a stream and redirect

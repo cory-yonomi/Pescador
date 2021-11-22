@@ -1,9 +1,10 @@
 <h2>Journal</h2>
+<a href="/journal/new"><button>New Trip</button></a>
 <div>
     <% trips.forEach(trip => { %>
         <div class="container tripCard">
             <div class="tripTitle">
-                <a href="/journal/<%= trip.id %>"><h3><%= trip.date.toLocaleDateString('en-US') %> <%= trips[0].stream.name %></h3></a>
+                <a href="/journal/<%= trip.id %>"><h3><%= trip.date.toLocaleDateString('en-US') %> <%= trip.stream.name %></h3></a>
             </div>
             <div class="lastTripBody">
                 <div class="left">
@@ -18,4 +19,3 @@
         </div>
     <% }) %>
 </div>
-<a href="/journal/new"><button>New Trip</button></a>

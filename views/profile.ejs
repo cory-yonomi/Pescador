@@ -12,13 +12,12 @@
         <% } else { %>
         <%= user.style %>
         <% } %>
-    </p>
-    <% console.log(user.streams[0]) %> 
+    </p> 
     <p>Favorite Stream: 
         <% if (!user.favoriteStream) { %>
             Select a favorite waterway!
         <% } else { %>
-        <%= user.streams %>
+        <%= user.streams[user.favoriteStream].name %>
         <% } %>
     </p>
     <p>Fish Caught: <%= user.fishes.length %>  </p>

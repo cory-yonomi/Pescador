@@ -8,6 +8,7 @@ const db = require('../models')
 router.get('/', isLoggedIn, (req, res) => {
     db.trip.findAll({
         where: { userId: req.user.id },
+        order: [['date', 'DESC']],
         include: [db.stream, db.fish]
     }).then((foundTrips) => {
         res.render('journal/journalIndex', {trips: foundTrips})        

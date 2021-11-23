@@ -17,7 +17,7 @@
         <% if (!user.favoriteStream) { %>
             Select a favorite waterway!
         <% } else { %>
-        <%= user.streams[user.favoriteStream].name %>
+        <%= favStream.name %>
         <% } %>
     </p>
     <p>Fish Caught: <%= user.fishes.length %>  </p>

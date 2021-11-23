@@ -4,14 +4,26 @@ const db = require('../models')
 const passport = require('../config/ppConfig.js')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
-// display profile page
-router.get('/', isLoggedIn, (req, res)=>{
-    db.user.findOne({
-        where: { id: req.user.id },
+const userReq = userId => {
+    return db.user.findOne({
+        where: { id: userId },
         include: [db.stream, db.trip, db.fish]
-    }).then(foundUser => {
-        console.log(foundUser)
-        res.render('profile', {user: foundUser})        
+    })
+}
+
+const findFavWater = favId => {
+    return db.stream.findByPk(favId)
+}
+
+// display profile page
+router.get('/', isLoggedIn, (req, res) => {
+    Promise.all([
+        userReq(req.user.id),
+        findFavWater(req.user.favoriteStream)
+    ])
+    .then(foundUser => {
+        console.log(req.user)
+        res.render('profile', {user: foundUser[0], favStream: foundUser[1]})        
     })
 })
 

@@ -2,7 +2,7 @@
 The Angler's Choice for Tracking Catches, Weather, and Conditions
 
 ## Use Instructions
-Pescador will be live on Heroku, where you can simply create a user account and begin creating streams, trips, and fish.
+Pescador is live at https://pescador.herokuapp.com/, where you can simply create a user account and begin creating streams, trips, and fish.
 
 Upon creating your account, head to the profile page and enter your zip code and fishing style. Next, you'll want to create your first stream so that you can set it as your favorite.
 

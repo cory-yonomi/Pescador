@@ -69,6 +69,7 @@ button, input[type=submit] {
 }
 
 input {
+    margin-right: 10px;
     font-weight: 300;
 }
 

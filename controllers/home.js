@@ -51,7 +51,6 @@ router.get('/', isLoggedIn, (req, res) => {
                     currentWind: windDirection(values[0].data.wind.deg),
                     forecastWind: windDirection(values[1].data.list[0].wind.deg)
                 }
-        
                 res.render('home', { current: values[0].data, forecast: values[1].data.list[0], trips: values[2], winds: winds})
             }
         })
